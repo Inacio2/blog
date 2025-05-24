@@ -12,16 +12,23 @@
 
         <thead>
             <tr>  
-                
+                <th>Id</th>
                 <th>Título</th>
+                <th>Slug</th>
+                <th>Categoria</th>
+                <th>Ações</th>
             </tr>
         </thead>
            
         <tbody>
             <% articles.forEach(article => {  %>
-                
-                <td><%= article.title %></td>
-                
+                <tr>
+                    <td><%= article.id %></td>
+                    <td><%= article.title %></td>
+                    <td><%= article.slug %></td>
+                    <td><%= article.categoryId %></td>
+                    <td></td>
+                </tr>   
             <% })%>
         </tbody>
     </table>
