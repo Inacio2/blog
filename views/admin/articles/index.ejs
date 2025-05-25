@@ -26,14 +26,29 @@
                     <td><%= article.id %></td>
                     <td><%= article.title %></td>
                     <td><%= article.slug %></td>
-                    <td><%= article.categoryId %></td>
-                    <td></td>
+                    <td><%= article.category.title %></td>
+                    <td>
+                        <form action="/admin/articles/detele" method="post" style="display: inline;" onsubmit="confirmarDelecao(event,this)" >
+                            <input type="hidden" name="id" value="<%=article.id%>">
+                            <button class="btn btn-danger">Excluir</button> 
+                        </form>
+                    </td>
                 </tr>   
             <% })%>
         </tbody>
     </table>
 </div>
 
+<script>
+    function confirmarDelecao(event,form){
+        event.preventDefault();
+        var decision = confirm("Deseja eliminar aeste artigo?");
+        if(decision){
+            form.submit();
+        }
+
+    }
+</script>
 
 </body>
 
