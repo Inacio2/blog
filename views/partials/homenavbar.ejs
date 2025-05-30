@@ -2,12 +2,19 @@
     <a href="/" class="navbar-brand" >
         GuiaPress
     </a>
-
+    
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
         </li>
        
+        <% categories.forEach(category =>{ %>
+            <li class="nav-item">
+                <a class="nav-link" href="/"><%=category.title %></a>
+            </li>
+           
+        <%})%>
+        
     </ul>
     
 </nav>
