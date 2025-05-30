@@ -61,4 +61,15 @@ router.post("/admin/articles/detele",(req,res)=>{
     }
 })
 
+router.get("/admin/edit/:id",(req,res)=>{
+    var id = req.params.id;
+    if(isNaN(id)){
+        res.redirect("/admin/articles");
+    }
+    Article.findByPk(id).then(article =>{
+        
+    })
+})
+
+
 module.exports = router
