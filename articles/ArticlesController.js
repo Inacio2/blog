@@ -61,15 +61,38 @@ router.post("/admin/articles/detele",(req,res)=>{
     }
 })
 
-router.get("/admin/edit/:id",(req,res)=>{
+router.get("/admin/articles/edit/:id",(req,res)=>{
     var id = req.params.id;
+
     if(isNaN(id)){
-        res.redirect("/admin/articles");
+        return  res.redirect("/admin/articles/");
     }
-    Article.findByPk(id).then(article =>{
-        
+    Article.findByPk(id).then(articles =>{
+        if(articles != undefined){
+            res.render("admin/articles/edit",{article : articles});
+
+        }else{
+            res.redirect("/admin/articles/");
+        }
+    }).catch(erro => {
+        res.redirect("/admin/articles");
+    })
+
+})
+
+router.post("/article/edit",(req,res) => {
+    var id = req.body.id;
+    var title = req.body.title;
+
+    Article.update({title : title, slug : slugfy(title)}, {
+        where:{
+            id : id
+        }
+    }).then(() => {
+        res.redirect("/admin/articles");
     })
 })
+
 
 
 module.exports = router
