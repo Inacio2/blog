@@ -6,13 +6,14 @@
         <hr>
         <div class="card">
             <div class="card-header">
-                <h2>Edição de artigo</h2>
+                <h2>Editar artigos</h2>
             </div>
             <div class="card-body">
                 <form action="/articles/save" method="post" name="article">
-                    <input class="form-control" type="text" name="title" placeholder=" Digite o título do Artigo"><br>
-                    <textarea class="form-control" placeholder="Escreva aqui" id="article" name="body"></textarea><br>
-                    <label for="">Categoria</label>
+                    <input class="form-control" type="text" name="title" placeholder="<%=article.title%>"><br>
+                    <textarea class="form-control" placeholder="Escreva aqui" id="article" name="body" ></textarea><br>
+                    <label for="">Categoria</label> 
+                    
                     <select name="category" class="form-control" id="" style="appearance: auto;">
                         <% categories.forEach((category) => { %>
                             <option value="<%=category.id%>"><%= category.title %></option>
@@ -25,6 +26,11 @@
         </div>
     </div>
 
+   
+
+    <div style="display: none;" id="content">
+        <%-article.body%>
+    </div>
     <script src="/tinymce/tinymce.min.js"></script>
 
     <script>
@@ -32,9 +38,12 @@
             selector: "#article",
             pugins : [
                 'advlist autolink image lists print preview hr sourchreplace wordcount fulscreen insertdatatime media save table paste emoticons'
-            ]
+            ],
+            init_instance_callback:() =>{
+                tinymce.get("article").setContent($("#content").html());
+            }
         })
     </script>
 </body>
 
-<%- include ('../../partials/footer.ejs') %>
+<%- include ('../../partials/footer.ejs') %> 
