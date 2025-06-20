@@ -91,6 +91,28 @@ router.post("/article/edit",(req,res) => {
     })
 })
 
+router.post("/admin/article/update",(req,res) =>{
+    var id = req.body.id
+    var title = req.body.title
+    var body = req.body.body
+    var category = req.body.category
+
+    Article.update({
+        id : id,
+        title : title,
+        body : body,
+        categoryId: category,
+        slug : slugfy(title)
+        },{
+            where : {
+                id : id
+            }
+        }).then(()=>{ // Se não um número
+                res.redirect("/admin/articles");
+            }).catch(err => {
+                res.redirect("/");
+            })
+});
 
 
 module.exports = router

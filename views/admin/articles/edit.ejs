@@ -9,7 +9,8 @@
                 <h2>Editar artigos</h2>
             </div>
             <div class="card-body">
-                <form action="/articles/save" method="post" name="article">
+                <form action="/admin/article/update" method="post" name="article">
+                    <input type="hidden" value="<%= article.id %>" name="id">
                     <input class="form-control" type="text" name="title" placeholder="<%=article.title%>"><br>
                     <textarea class="form-control" placeholder="Escreva aqui" id="article" name="body" ></textarea><br>
                     <label for="">Categoria</label> 
