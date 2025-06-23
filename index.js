@@ -5,9 +5,11 @@ const connection = require("./database/database");
 
 const categoriesController = require("./categories/CategoriesController");
 const articleController = require("./articles/ArticlesController");
+const usercontroller = require("./user/Usercontroller");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./user/User");
 const { where } = require("sequelize");
 
 // View Engine
@@ -32,12 +34,14 @@ connection
 
 app.use("/",categoriesController);
 app.use("/",articleController);
+app.use("/",usercontroller);
 
 app.get("/",(req,res)=>{
     Article.findAll({
         order: [
             ['id','DESC']
-        ]
+        ], 
+        limit : 4
     }).then(articles => {
 
         Category.findAll().then(categories => {

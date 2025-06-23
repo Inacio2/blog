@@ -15,7 +15,24 @@
             </div>
             <br>
         <%})%>
+        <div class="row">
+            <div class="col col-12">
+                 
+                  <% if(result.page > 2){%>
+                    <a href="/article/page/<%= result.page - 1 %>" style="float: left;" >Prev<<<</a>
+                <%}else if(result.page == 2){%>
+                    <a href="/" style="float: left;" >Prev<<<</a>
+                <%}%>
+
+                <% if(result.next){%>
+                    <a href="/article/page/<%= result.page + 1 %>" style="float: right;" >Next>>></a>
+                <%}%>
+                
+            </div>
+        </div>
+        <hr>
     </div>
+     
 </body>
 
 <%- include ('../../partials/footer.ejs') %>
