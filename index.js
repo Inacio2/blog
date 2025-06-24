@@ -18,7 +18,7 @@ app.set('view engine','ejs');
 
 //Session
 app.use(session({
-    secret: "kghjkhgbjkfsdg", cookie: {maxAge: 30000} 
+    secret: "kghjkhgbjkfsdg", cookie: {maxAge: 300000} 
 }))
 
 // body-paerser

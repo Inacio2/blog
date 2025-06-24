@@ -3,8 +3,9 @@ const router = express.Router();
 const Category = require("../categories/Category.js");
 const Article = require("./Article.js");
 const slugfy = require("slugify");
+const adminAuth = require("../middleware/adminAuth.js");
 
-router.get("/admin/articles",(req,res) =>{
+router.get("/admin/articles", adminAuth ,(req,res) =>{
     Article.findAll({
         include : [{model : Category}]
     }).then(articles => {
@@ -15,7 +16,7 @@ router.get("/admin/articles",(req,res) =>{
 });
 
 
-router.get("/admin/articles/new",(req,res) =>{
+router.get("/admin/articles/new",adminAuth,(req,res) =>{
     Category.findAll().then(categories => {
         res.render("admin/articles/new",{categories : categories});
     })
