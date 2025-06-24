@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
+const session = require("express-session");
 
 const categoriesController = require("./categories/CategoriesController");
 const articleController = require("./articles/ArticlesController");
@@ -12,7 +13,7 @@ const Category = require("./categories/Category");
 const User = require("./user/User");
 const { where } = require("sequelize");
 
-// View Engine
+// View Engine  
 app.set('view engine','ejs');
 
 // body-paerser
