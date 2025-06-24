@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
-const session = require("express-session");
+const session = require("express-session"); 
 
 const categoriesController = require("./categories/CategoriesController");
 const articleController = require("./articles/ArticlesController");
@@ -15,6 +15,11 @@ const { where } = require("sequelize");
 
 // View Engine  
 app.set('view engine','ejs');
+
+//Session
+app.use(session({
+    secret: "kghjkhgbjkfsdg", cookie: {maxAge: 30000} 
+}))
 
 // body-paerser
 app.use(bodyParser.urlencoded({extended: false}));
